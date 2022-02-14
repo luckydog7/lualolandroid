@@ -1,0 +1,26 @@
+<xml>
+
+    <files id='haxe'>
+
+        <compilerflag value='-I${LINC_LUA_PATH}/linc/'/>
+        <file name='${LINC_LUA_PATH}linc/linc_lua.cpp' />
+
+    </files>
+
+    <files id="__main__">
+        <compilerflag value='-I${LINC_LUA_PATH}linc/'/>
+    </files>
+    
+    <target id="haxe">
+        <section if="windows">
+            <lib name='${LINC_LUA_PATH}lib/Lua/lib/Windows64/lua51.lib' if='HXCPP_M64' />
+            <lib name='${LINC_LUA_PATH}lib/Lua/lib/Windows/lua51.lib' if='HXCPP_M32' />
+        </section>
+        <section if="android">
+            <lib name='${LINC_LUA_PATH}ndll/Android/libluajit-v7.so' if='HXCPP_ARMV7' />
+            <lib name='${LINC_LUA_PATH}ndll/Android/libluajit-64.so' if='HXCPP_ARM64' />
+            <lib name='${LINC_LUA_PATH}ndll/Android/libluajit-x86.so' if='HXCPP_X86' />
+        </section>
+    </target>
+
+</xml>
